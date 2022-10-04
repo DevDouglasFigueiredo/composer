@@ -1,19 +1,18 @@
 <?php
 
 require 'vendor/autoload.php';
-require 'src/Buscador.php';
 
+
+use Douglas\BuscadorDeCursos\Buscador;
 use GuzzleHttp\Client;
-use Douglas\BuscardorDeCursos\Buscador;
 use Symfony\Component\DomCrawler\Crawler;
 
-$client = new Client(['base_uri' => 'https://www.alura.com.br']);
+$client = new Client(['base_uri' => 'https://www.alura.com.br/']);
 $crawler = new Crawler();
 
-
-$buscador = new Buscador($cliente , $crawler);
+$buscador = new Buscador($client, $crawler);
 $cursos = $buscador->buscar('/cursos-online-programacao/php');
 
 foreach ($cursos as $curso) {
-    echo $curso. PHP_EOL;
+    echo $curso . PHP_EOL;
 }
